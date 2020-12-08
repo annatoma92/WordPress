@@ -101,7 +101,7 @@ jobs:
             source /home/circleci/.bashrc
             sudo sh -c "printf '\ndeb http://ftp.us.debian.org/debian sid main\n' >> /etc/apt/sources.list"
             git submodule update --init
-            composer global require --dev automattic/vipwpcs dealerdirect/phpcodesniffer-composer-installer overtrue/phplint phpmd/phpmd sebastian/phpcpd
+            composer global require --dev automattic/vipwpcs dealerdirect/phpcodesniffer-composer-installer rgbcode/coding-standards
             sudo sed -i 's/memory_limit = 128M/memory_limit = 2048M/' /usr/local/etc/php/php.ini-development
             sudo sed -i 's/memory_limit = 128M/memory_limit = 2048M/' /usr/local/etc/php/php.ini-production
       - run:
@@ -118,7 +118,7 @@ jobs:
             echo "Getting list of changed files..."
             changed_files=$(git diff --diff-filter=ad --name-only $target_branch..$CIRCLE_BRANCH -- '*.php')
             phpcs --config-set ignore_warnings_on_exit 1
-            phpcs --standard=WordPress-Extra,WordPress-VIP-Go --colors --report=emacs --extensions=php -s -p -v --basepath=. $changed_files
+            phpcs --standard=WordPress-Extra,rgbcode-WordPress --colors --report=emacs --extensions=php -s -p -v --basepath=. $changed_files
 workflows:
   testing:
     jobs:

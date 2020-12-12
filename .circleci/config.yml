@@ -101,7 +101,7 @@ jobs:
             source /home/circleci/.bashrc
             sudo sh -c "printf '\ndeb http://ftp.us.debian.org/debian sid main\n' >> /etc/apt/sources.list"
             git submodule update --init
-            composer global require --dev automattic/vipwpcs dealerdirect/phpcodesniffer-composer-installer rgbcode/coding-standards
+            composer global require --dev automattic/vipwpcs dealerdirect/phpcodesniffer-composer-installer
             sudo sed -i 's/memory_limit = 128M/memory_limit = 2048M/' /usr/local/etc/php/php.ini-development
             sudo sed -i 's/memory_limit = 128M/memory_limit = 2048M/' /usr/local/etc/php/php.ini-production
       - run:
